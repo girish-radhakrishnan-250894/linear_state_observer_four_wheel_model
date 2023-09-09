@@ -61,25 +61,29 @@ C = [0 1];
 % same as the place.m function of
 L = placeMIMO(A',C',[-15,-17])';
 
-%% Initializing State & Error Vector
+%% Initializing : Measured output and estimator output
 
 y = r_measured;
 
 y_hat = r_hat;
 
+%% Initializing : Estimator state and estimator input
+
 u = delta_c;
 
 x_hat = [v_hat r_hat]';
 
-%% State & Error Dynamics
+%% Estimator Dynamics
 
 x_hat_dot = A*x_hat + B*u + L*(y - y_hat);
 
-%% State Observer Dynamics
+%% Augmented system dynamics ([model estimator])
 
 Q_dot = [q_dot;
          x_hat_dot
          ];
+
+%% Initializing outputs to be logged
 
 O_simulator = [O_model(2)];
 
