@@ -8,8 +8,8 @@ function [Q_dot,O_simulator,O_model] = state_observer(t, Q,input)
 
 %% Initialization : State Observer variables (only those required to calculate the necessary observer actions)
 
-v_hat = Q(29);
-r_hat = Q(30);
+v_hat = Q(29); % Estimate of lateral velocity - v
+r_hat = Q(30); % Estimate of yaq rate - r
 
 %% Initialization : Inputs (reference inputs to be tracked by controller)
 delta_c = interp1(input.time, input.delta, t, 'pchip');
@@ -25,6 +25,10 @@ q = Q(1:28);
 
 %% Initialization : Measured state
 
+% This is the measured signal that the estimator tries to track
+% This could be a signal coming from a sensor but in this code it is coming
+% from the four-wheel model that is significantly more complex than the
+% estimator model. Therefore, it can be considered to be sensor measurement
 r_measured = q_dot(6);
 
 
