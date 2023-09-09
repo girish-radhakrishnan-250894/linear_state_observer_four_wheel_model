@@ -53,3 +53,13 @@ parfor i=1:length(q)
     [~,O_simulator(i,:),~] = state_observer(t(i),q(i,:)',input);
 end
 
+
+%% PLOTS
+
+figure
+plot(t, O_simulator, t, q(:,29))
+legend("v","v_hat", Location="best")
+
+figure
+plot(t,(q(:,20)), t, q(:,30))
+legend("r","r_{hat}", Location="best")
