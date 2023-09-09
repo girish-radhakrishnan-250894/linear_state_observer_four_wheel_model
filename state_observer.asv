@@ -43,29 +43,26 @@ u = O_model(1);
 a = input.a_1;
 b = abs(input.a_3);
 
-% System Matrix
+% Matrices
 A = -[(C1 + C2)/(m*u),              u + (a*C1 - b*C2)/(m*u);
       (a*C1 - b*C2)/(Izz*u),    (a^2*C1 + b^2*C2)/(Izz*u)];
 
-% Input Matrix
+
 B = [C1/m;
      a*C1/Izz];
 
-% Output Matrix
 C = [0 1];
 
 % State Observer Gain
-% Using pole placement technique to create the observer gain matrix
-% Using the principle of duality, (A-BK) is equivalent to (A' - C'L').
-% Therefore, A', C' can be used using the placeMIMO function (which is the
-% same as the place.m function of
+
+% K = [250
+%      250];
+
 L = placeMIMO(A',C',[-15,-17])';
 
 %% Initializing State & Error Vector
 
-y = r_measured;
-
-y_hat = r_hat;
+x = [0 r_measured]';
 
 u = delta_c;
 
@@ -73,7 +70,7 @@ x_hat = [v_hat r_hat]';
 
 %% State & Error Dynamics
 
-x_hat_dot = A*x_hat + B*u + L*(y - y_hat);
+x_hat_dot = A*x_hat + B*u + L*C*(x - x_hat);
 
 %% State Observer Dynamics
 
