@@ -31,7 +31,7 @@ omega_y_2_guess = v_guess/input.r_02;
 omega_y_3_guess = v_guess/input.r_03;
 omega_y_4_guess = v_guess/input.r_04;
 
-q0 = [0 0 0 0 0 0 0 0 0 0 0 0 0 0 input.u_start 0 0 0 0 0 0 0 0 0 omega_y_1_guess omega_y_2_guess omega_y_3_guess omega_y_4_guess 1.1 -0.4];
+q0 = [0 0 0 0 0 0 0 0 0 0 0 0 0 0 input.u_start 0 0 0 0 0 0 0 0 0 omega_y_1_guess omega_y_2_guess omega_y_3_guess omega_y_4_guess 0 0];
 
 %% SIMULATION :- Simulation Options
 
@@ -61,5 +61,5 @@ plot(t, O_simulator, t, q(:,29))
 legend("v","v_hat", Location="best")
 
 figure
-plot(t,(q(:,20)), t, q(:,30))
+plot(t,rad2deg(q(:,20)), t, rad2deg(q(:,30)))
 legend("r","r_{hat}", Location="best")

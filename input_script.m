@@ -36,11 +36,11 @@ addpath(genpath(pwd));
 input.P_v_scaler = 0.003; % P_v is auto-set as 4.04007*m_s*g
 %% INPUT :- STEERING
 
-input.delta = [0 0 0 0 deg2rad(3) deg2rad(3) deg2rad(3)];
+input.delta = 0.5*[0 0 0 0 deg2rad(3) deg2rad(3) deg2rad(3)];
 input.time  = [0 1 2 3 4 5 9];
 %% INPUT :- SPEED
 
-input.u_start = 50/3.6;
+input.u_start = 80/3.6;
 input.u_max = 150/3.6;
 %% INPUT :- Torque Distribution
 
